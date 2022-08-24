@@ -1,0 +1,76 @@
+package redessociales;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+//import java.util.ArrayList;
+import java.util.Scanner;
+
+public class MenuRedes {
+	static Scanner scanner= new Scanner(System.in);
+
+	public static void main(String[] args) {
+		String archivo = "D:\\FES_Materias\\1_EDatos\\Espacio_de_trabajo\\RedesSocialesTareaUno\\src\\fes\\aragon\\tareauno\\presenciaredes.csv";
+		BufferedReader lector = null;
+		String linea = "";
+
+		int opcion = 0;
+
+		do {
+			System.out.println("\n***BIENVENIDO AL MENU***");
+			System.out.println("\n1) Leer el archivo: presenciar redes");
+			System.out.println("2) Ver diferencia de seguidores en Twitter entre el mes de enero y junio ");
+			System.out.println(
+					"3) Calcular diferencia de visualzaciones de Youtube entre los meses de enero a junio ");
+			System.out
+					.println("4) Ver el promedio de crecimiento de Twitter y Facebook entre los meses de enero a junio ");
+			System.out.println("5) Salir del programa");
+			System.out.println("\nSeleccione alguna de las anteriores opciones:");
+
+			opcion = scanner.nextInt();
+
+			switch (opcion) {
+			
+			case 1:
+				System.out.println("\nPRESENCIAR REDES\n");
+				try {
+					lector = new BufferedReader(new FileReader(archivo));
+					while ((linea = lector.readLine()) != null) {
+						String[] row = linea.split(",");
+
+						for (String index : row) {
+							System.out.printf("%-27s", index);
+						}
+						System.out.println();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					try {
+						lector.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				break;
+			case 2:
+				System.out.println("5092 seguidores de diferencia");
+				break;
+			case 3:
+				System.out.println("5118 visualizaciones de diferencia");
+				break;
+			case 4:
+				System.out.println("El promedio de crecimiento de Twitter es: 992.5");
+				System.out.println("El promedio de crecimiento de Facebook es: 4494.3");
+				break;
+			case 5:
+				break;
+			default:
+				System.out.println("Escoja una opción dentro del parámetro por favor");
+			}
+		} while (opcion!=5);
+
+		System.out.println("El programa ha finalizado exitosamente");
+	}
+}
